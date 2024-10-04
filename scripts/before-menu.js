@@ -5,11 +5,32 @@
  * before-menu.js = Custom inaccessible Dropdown Menu
  */
 
-// $(document).ready(function() {
+$(document).ready(function() {
 
 //   var timeout = 3000;
 //   var timer = 0;
 //   var subMenu = null;
+
+
+    // 1. Add keyboard accessibility for the dropdown toggle
+    $(".nav-item.dropdown")
+        .on('keydown', function(e) {
+            // Check for Enter or Space key
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault(); // Prevent default link behavior
+                $(this).addClass("show");
+                $(this).find(".dropdown-toggle").attr("aria-expanded", "true");
+                $(this).find(".dropdown-menu").addClass("show");
+            }
+            // Check for Escape key to close the dropdown
+            else if (e.key === 'Escape') {
+                e.preventDefault(); // Prevent default link behavior
+                $(this).removeClass("show");
+                $(this).find(".dropdown-toggle").attr("aria-expanded", "true");
+                $(this).find(".dropdown-menu").removeClass("show");
+                $(this).focus(); // Return focus to the toggle link
+            }
+        });
 
 //   $("#menu > li")
 //     .on('mouseenter',function(){
@@ -36,4 +57,4 @@
 //       subMenu = null;
 //     }
 //   }
-// });
+});

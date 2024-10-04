@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<!-- Added the 'lang' attribute to the <html> tag to specify the document's language. 
+This improves accessibility for users with screen readers and enhances search engine optimization. -->
+<html lang="en">
 <head>
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-	<title>Test- Before - Accessible University Demo Site - Inaccessible Version</title>
+	<title>Before - Accessible University Demo Site - Inaccessible Version</title>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 	<link rel="icon" href="images/favicon.ico" type="image/x-icon">
   <link href="styles/bootstrap.min.css" rel="stylesheet">
@@ -47,9 +49,11 @@
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#"
+                  aria-haspopup="true" 
+                  aria-expanded="false" 
                   data-toggle="dropdown">
                   About
-              </a>
+              </a> 
               <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="#">News</a></li>
                 <li><a class="dropdown-item" href="#">Governance</a></li>
@@ -104,9 +108,13 @@
               <div id="carousel">
                 <div>
                   <div class="slide">
-                    <a href="somepage.html?ref=Slide%201">
-                      <img src="images/8675309-before_brass_band.jpg" />
-                    </a>
+                      <!-- Error: The image tag did not include an alt attribute, which is essential for accessibility. 
+                      Fix: Added an alt attribute to provide a clear description of the image content for users with visual impairments.  -->
+                      <img src="images/8675309-after_brass_band.jpg" alt="A lively brass band performing on stage, in front of a lively audience, with musicians playing guitar, drums, and piano." />
+                      <div class="p-3 overlay-text clearfix">
+                        <h3><a href="somepage.html?ref=Slide%1">Accessible University Brass Ensemble</a></h3>
+                        <p>Thursday, December 9 at 9:00 AM at University Chapel</p>
+                      </div>
                   </div>
                   <div class="slide">
                     <a href="somepage.html?ref=Slide%202">
@@ -230,7 +238,8 @@
                 <h5><a href="#">A great holiday event</a></h4>
 
                 <p>Don't miss this event.</p>
-                <img class="hr" src="images/hr.png" alt="horizontal line graphic">
+                <!-- Removed alt text to convert to decorative image -->
+                <img class="hr" src="images/hr.png" alt="">
                 <h6>December 31</h6>
                 <h5><a href="#">New years eve party</a></h4>
                 <p>Ring in the new year with your friends</p>
@@ -240,7 +249,8 @@
               <div id="appForm" class="form-group box">
 
                 <div class="heading">Start your application</div>
-                  <p class="required reqExample">(required fields are in blue)</p>
+                  <!-- Do not rely on color only for visual que  -->
+                  <p class="required reqExample">Required fields are marked with <span style="color: red;">*</span></p>
 
                 <form action="#" method="post">
 
@@ -248,12 +258,17 @@
                   <div id="error"></div>
 
                   <div class="required form-group">
-                    Name:
-                    <input type="text" name="name" class="form-control" />
+                    <!-- Mark required fields with asterick -->
+                    <label for="name">Name: <span style="color: red;">*</span></label>
+                    <input type="text" name="name" class="form-control" required/>
                   </div>
                   <div class="required form-group">
-                    Email:
-                    <input type="text" name="email" class="form-control" />
+                    <!-- Replaced the missing form label inside the <div> with an explicit <label> element that uses the 'for' attribute to associate it with the input field. 
+                    This resolves the accessibility issue and ensures that screen readers and users can properly identify the purpose of the input field. -->
+                    <label for="email">Email: <span style="color: red;">*</span></label>
+                    <input type="text" id="email" name="email" class="form-control" required/>
+
+
                   </div>
                   <div class="form-group">
                     Country:
